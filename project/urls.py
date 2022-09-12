@@ -4,8 +4,7 @@ from datacenter import views
 
 urlpatterns = [
     url(r'^$', views.view_classes, name='classes'),
-    url(r'^(?P<year>[\w+ ]+)/(?P<letter>[\w+ ]+)$', views.view_class_info,
-        name='class_info'),
+    url(r'^(?P<year>[\w+ ]+)/(?P<letter>[\w+ ]+)$', views.view_class_info, name='class_info'),
     url(r'^(?P<year>[\w+ ]+)/(?P<letter>[\w+ ]+)/schedule/$',
         views.view_schedule, name='schedule'),
     url(r'^(?P<year>[\w+ ]+)/(?P<letter>[\w+ ]+)/schedule/$',

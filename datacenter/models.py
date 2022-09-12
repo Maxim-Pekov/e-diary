@@ -119,7 +119,7 @@ class Chastisement(models.Model):
         on_delete=models.CASCADE)
 
     def __str__(self):
-        return f'{self.schoolkid.full_name}'
+        return f'{self.schoolkid.full_name} {self.teacher.full_name}'
 
 
 class Commendation(models.Model):

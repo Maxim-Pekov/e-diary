@@ -1,51 +1,165 @@
-# Электронный дневник школы
+# e-diary
 
-Этот сайт - интерфейс для учеников школы. Здесь можно посмотреть оценки, расписание и прочую открытую информацию. Учителя заполняют базу данных через другой сайт. Ставят там оценки и т.д.
+Это скрипт для исправления оценок и заметок в электронном дневнике школы
 
-## Описание моделей
+## How does he work:
 
-На сайте есть ученики: `Schoolkid`. Класс ученика определяется через комбинацию его полей `year_of_study` — год обучения и `group_letter` — литера класса. Вместе получается, например, 10А. Ученик связан со следующими моделями:
+1. Вы скачиваете скрипт. Вставляете файл `fix_marks.py` в корневую директорию джанго проекта электронного дневника школы
+   рядом с manage.py
+2. Запускаете джанго сайт командой
 
-- `Mark` — оценка на уроке, от 2 до 5.
-- `Commendation` — похвала от учителя, за особые достижения.
-- `Chastisement` — замечание от учителя, за особые проступки.
+```python
+python3
+manage.py
+runserver
+```
 
-Все 3 объекта связаны не только с учителем, который их создал, но и с учебным предметом (`Subject`). Примеры `Subject`:
+3. В терминале запускате shell командой:
 
-- Математика 8 класса
-- Геометрия 11 класса
-- Русский язык 1 класса
-- Русский язык 4 класса
+```python
+python3
+manage.py
+shell
+```
 
-`Subject` определяется не только названием, но и годом обучения, для которого учебный предмет проходит.
+4. В shell импортируете скрипт командой:
 
-За расписание уроков отвечает модель `Lesson`. Каждый объект `Lesson` — урок в расписании. У урока есть комбинация `year_of_study` и `group_letter`, благодаря ей можно узнать для какого класса проходит этот урок. У урока есть `subject` и `teacher`, которые отвечают на вопросы "что за урок" и "кто ведёт". У урока есть `room` — номер кабинета, где он проходит. Урок проходит в дату `date`.
+```python
+from fix_marks import fix_marks, delete_chastisements, create_commendation, get_schoolkid
+```
 
-Расписание в школе строится по слотам:
+5. Затем с помошью функции `get_schoolkid` из БД достаете объект ученика присваивая его переменной `schoolkid`,
+   параметрами в функцию передаете ФИО, если передать только фамилию скрипт тоже сработает, но может найти более одого
+   ученика и тогда скрипт завершится с ошибкой.
 
-- 8:00-8:40 — 1 урок
-- 8:50-9:30 — 2 урок
-- ...
+```python
+schoolkid = get_schoolkid('ФИО')
+```
+6. Если хотите заменить все 2ки и 3ки на 5ки
+```python
+python
+publishing_photos.py
+```
 
-У каждого `Lesson` есть поле `timeslot`, которое объясняет, какой номер у этого урока в расписании.
+3. The script will publish photos to the group with a given frequency through the telegram bot.
+4. If you want to post only one photo, then use the command:
 
-## Запуск
+```python
+python
+telegram_bot.py - p
+nasa_4.jpg
+```
 
-- Скачайте код
-- Установите зависимости командой `pip install -r requirements.txt`
-- Создайте БД командой `python3 manage.py migrate`
-- Запустите сервер командой `python3 manage.py runserver`
+If you do not specify an argument, then the photo will be random from the 'images' directory
 
-## Переменные окружения
+5. If you need more photos, you can upload them manually or with built-in modules to the 'images' directory.
+6. Download 5 random photos from the NASA website
 
-Часть настроек проекта берётся из переменных окружения. Чтобы их определить, создайте файл `.env` рядом с `manage.py` и запишите туда данные в таком формате: `ПЕРЕМЕННАЯ=значение`.
+```python
+python
+fetch_nasa_images.py - i
+5
+```
 
-Доступны 3 переменные:
-- `DEBUG` — дебаг-режим. Поставьте True, чтобы увидеть отладочную информацию в случае ошибки.
-- `SECRET_KEY` — секретный ключ проекта
-- `ALLOWED_HOSTS` — см [документацию Django](https://docs.djangoproject.com/en/3.1/ref/settings/#allowed-hosts).
-- `DATABASE_NAME` — путь до базы данных, например: `schoolbase.sqlite3`
+7. Download 4 random epic photos from the NASA website
 
-## Цели проекта
+```python
+python
+fetch_epic_images.py - i
+4
+```
 
-Код написан в учебных целях — это урок в курсе по Python и веб-разработке на сайте [Devman](https://dvmn.org).
+8. Upload photos from SpaceX launch by flight id, if id is not set, it will select the last launch.
+
+```python
+python
+fetch_spacex_images.py - h
+```
+
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
+![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
+![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)
+---
+
+## Installation
+
+Use these commands to start a project on your hardware.
+
+- [x] You can mark completed tasks with checkboxes
+
+1. Install
+
+```python
+git
+clone
+https: // github.com / Maxim - Pekov / Api_cosmos
+python - m
+venv
+venv
+```
+
+2. Activate venv
+
+```python
+.\venv\Scripts\activate  # windows
+source. / venv / bin / activate  # Linux, Mac  
+```
+
+3. Go to the `./Api_cosmos` directory
+4. Install requirements
+
+```python
+pip
+install - r
+requirements.txt
+```
+
+5. Create `.env` directory
+6. In the directory `.env` write the following lines:
+
+```python
+DIRECTORY_PATH = 'images'  # the name of the directory where the photos will be stored.
+TELEGRAM_TOKEN = '123456789qwerty'
+SECONDS_DELAY = 3600  # number of seconds to delay sending a photo to a telegram group.
+TELEGRAM_CHAT_ID = 123456  # your group number, you can get it by forwarding a message from the group to Get My Id (bot)
+NASA_TOKEN = 'ToKeN'  # Need to run (python fetch_nasa_images.py --images_count 5), you can get it in NASA Api 
+
+```
+
+5. Run this command
+
+```python
+python
+publishing_photos.py
+```
+
+---
+
+## About me
+
+[<img align="left" alt="maxim-pekov | LinkedIn" width="30px" src="https://img.icons8.com/color/48/000000/linkedin-circled--v3.png" />https://www.linkedin.com/in/maxim-pekov/](https://www.linkedin.com/in/maxim-pekov/)
+</br>
+
+<img align="left" alt="maxim-pekov" width="28px" src="https://upload.wikimedia.org/wikipedia/commons/5/5c/Telegram_Messenger.png" />
+@MaxPekov
+</br>
+
+[//]: # (Карточка профиля: )
+![](https://github-profile-summary-cards.vercel.app/api/cards/profile-details?username=Maxim-Pekov&theme=solarized_dark)
+
+[//]: # (Статистика языков в коммитах:)
+
+[//]: # (Статистика языков в репозиториях:)
+![](https://github-profile-summary-cards.vercel.app/api/cards/most-commit-language?username=Maxim-Pekov&theme=solarized_dark)
+![](https://github-profile-summary-cards.vercel.app/api/cards/repos-per-language?username=Maxim-Pekov&theme=solarized_dark)
+
+
+[//]: # (Статистика профиля:)
+
+[//]: # (Данные по коммитам за сутки:)
+![](https://github-profile-summary-cards.vercel.app/api/cards/stats?username=Maxim-Pekov&theme=solarized_dark)
+![](https://github-profile-summary-cards.vercel.app/api/cards/productive-time?username=Maxim-Pekov&theme=solarized_dark)
+
+[//]: # ([![trophy]&#40;https://github-profile-trophy.vercel.app/?username=Maxim-Pekov&#41;]&#40;https://github.com/ryo-ma/github-profile-trophy&#41;)
+
