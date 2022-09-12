@@ -2,24 +2,20 @@
 
 Это скрипт для исправления оценок и заметок в электронном дневнике школы
 
-## How does he work:
+## Как он работает:
 
 1. Вы скачиваете скрипт. Вставляете файл `fix_marks.py` в корневую директорию джанго проекта электронного дневника школы
    рядом с manage.py
 2. Запускаете джанго сайт командой
 
 ```python
-python3
-manage.py
-runserver
+python3 manage.py runserver
 ```
 
 3. В терминале запускате shell командой:
 
 ```python
-python3
-manage.py
-shell
+python3 manage.py shell
 ```
 
 4. В shell импортируете скрипт командой:
@@ -35,107 +31,39 @@ from fix_marks import fix_marks, delete_chastisements, create_commendation, get_
 ```python
 schoolkid = get_schoolkid('ФИО')
 ```
-6. Если хотите заменить все 2ки и 3ки на 5ки
-```python
-python
-publishing_photos.py
-```
 
-3. The script will publish photos to the group with a given frequency through the telegram bot.
-4. If you want to post only one photo, then use the command:
+6. Если хотите заменить все 2ки и 3ки на 5ки, запустите функцию ниже
 
 ```python
-python
-telegram_bot.py - p
-nasa_4.jpg
+fix_marks(schoolkid)
 ```
 
-If you do not specify an argument, then the photo will be random from the 'images' directory
-
-5. If you need more photos, you can upload them manually or with built-in modules to the 'images' directory.
-6. Download 5 random photos from the NASA website
+7. Если хотите добавить похвалу от имени учителя случайного урока, то запустите функцию ниже
 
 ```python
-python
-fetch_nasa_images.py - i
-5
+create_commendation(schoolkid)
 ```
 
-7. Download 4 random epic photos from the NASA website
+8. Если хотите удалить все замечания учителей, то запустите функцию ниже
 
 ```python
-python
-fetch_epic_images.py - i
-4
+delete_chastisements(schoolkid)
 ```
 
-8. Upload photos from SpaceX launch by flight id, if id is not set, it will select the last launch.
+## Установка
+
+Используйте данную инструкцию как установить этот скрипт
+
+
+1. Установить
 
 ```python
-python
-fetch_spacex_images.py - h
+git clone https://github.com/Maxim-Pekov/e-diary.git
 ```
 
-![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54)
-![Git](https://img.shields.io/badge/git-%23F05033.svg?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)
-![Telegram](https://img.shields.io/badge/Telegram-2CA5E0?style=for-the-badge&logo=telegram&logoColor=white)
+2. Скопируйте скрипт `fix_marks.py` в корневую папку джанго проекта вашего электронного дневника рядом с `model.py`
+3. Далее следуйте инструкции, как он работает
 ---
-
-## Installation
-
-Use these commands to start a project on your hardware.
-
-- [x] You can mark completed tasks with checkboxes
-
-1. Install
-
-```python
-git
-clone
-https: // github.com / Maxim - Pekov / Api_cosmos
-python - m
-venv
-venv
-```
-
-2. Activate venv
-
-```python
-.\venv\Scripts\activate  # windows
-source. / venv / bin / activate  # Linux, Mac  
-```
-
-3. Go to the `./Api_cosmos` directory
-4. Install requirements
-
-```python
-pip
-install - r
-requirements.txt
-```
-
-5. Create `.env` directory
-6. In the directory `.env` write the following lines:
-
-```python
-DIRECTORY_PATH = 'images'  # the name of the directory where the photos will be stored.
-TELEGRAM_TOKEN = '123456789qwerty'
-SECONDS_DELAY = 3600  # number of seconds to delay sending a photo to a telegram group.
-TELEGRAM_CHAT_ID = 123456  # your group number, you can get it by forwarding a message from the group to Get My Id (bot)
-NASA_TOKEN = 'ToKeN'  # Need to run (python fetch_nasa_images.py --images_count 5), you can get it in NASA Api 
-
-```
-
-5. Run this command
-
-```python
-python
-publishing_photos.py
-```
-
----
-
 ## About me
 
 [<img align="left" alt="maxim-pekov | LinkedIn" width="30px" src="https://img.icons8.com/color/48/000000/linkedin-circled--v3.png" />https://www.linkedin.com/in/maxim-pekov/](https://www.linkedin.com/in/maxim-pekov/)
