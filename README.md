@@ -61,7 +61,14 @@ delete_chastisements(schoolkid)
 git clone https://github.com/Maxim-Pekov/e-diary.git
 ```
 
-2. Скопируйте скрипт `fix_marks.py` в корневую папку джанго проекта вашего электронного дневника рядом с `model.py`
+2. Скопируйте скрипт `fix_marks.py` в корневую папку джанго проекта вашего электронного дневника рядом с `manage.py`, ссылка на репозиторий для добавления скрипта ниже:
+```python
+git clone https://github.com/devmanorg/e-diary.git
+```
+3. В проекте используется база данных, скачайте БД по ссылке:
+```python
+https://dvmn.org/filer/canonical/1562234129/166/
+```
 3. Далее следуйте инструкции, как он работает
 ---
 ## About me
