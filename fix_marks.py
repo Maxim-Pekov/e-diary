@@ -17,14 +17,14 @@ def create_commendation(schoolkid):
     from datacenter.models import Subject, Lesson, Commendation, Teacher
     commendations = ['Молодец!', 'Отлично!', 'Хорошо!', 'Гораздо лучше, чем я ожидал!', 'Ты меня приятно удивил!',
                      'Великолепно!']
-    lesson = ['Изобразительное искусство', 'Чтение', 'Труд', 'Математика', 'Чистописание', 'Физкультура', 'Музыка',
+    lessons_title = ['Изобразительное искусство', 'Чтение', 'Труд', 'Математика', 'Чистописание', 'Физкультура', 'Музыка',
               'Природоведение']
 
     commendation = random.choice(commendations)
-    lessonn = random.choice(lesson)
+    lesson = random.choice(lessons_title)
     year_of_study = schoolkid.year_of_study
     group_letter = schoolkid.group_letter
-    lessons = Lesson.objects.filter(year_of_study=year_of_study, group_letter=group_letter, subject__title=lessonn)
+    lessons = Lesson.objects.filter(year_of_study=year_of_study, group_letter=group_letter, subject__title=lesson)
     lessons_count = len(lessons)
     if lessons_count:
         teacher_name = lessons[lessons_count - 1].teacher
