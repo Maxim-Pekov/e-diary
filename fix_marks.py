@@ -26,12 +26,13 @@ def create_commendation(schoolkid):
     group_letter = schoolkid.group_letter
     lessons = Lesson.objects.filter(year_of_study=year_of_study, group_letter=group_letter, subject__title=lessonn)
     lessons_count = len(lessons)
-    teacher_name = lessons[lessons_count - 1].teacher
-    subject_title = lessons[lessons_count - 1].subject.title
-    date = lessons[lessons_count - 1].date
-    teacher = Teacher.objects.get(full_name=teacher_name)
-    subject = Subject.objects.get(title=subject_title, year_of_study=year_of_study)
-    Commendation.objects.create(teacher=teacher, subject=subject, created=date, text=commendation, schoolkid=schoolkid)
+    if lessons_count:
+        teacher_name = lessons[lessons_count - 1].teacher
+        subject_title = lessons[lessons_count - 1].subject.title
+        date = lessons[lessons_count - 1].date
+        teacher = Teacher.objects.get(full_name=teacher_name)
+        subject = Subject.objects.get(title=subject_title, year_of_study=year_of_study)
+        Commendation.objects.create(teacher=teacher, subject=subject, created=date, text=commendation, schoolkid=schoolkid)
 
 
 def get_schoolkid(full_name):
