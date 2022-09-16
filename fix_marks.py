@@ -6,10 +6,7 @@ def delete_chastisements(schoolkid):
 
 def fix_marks(schoolkid):
     from datacenter.models import Mark
-    marks = Mark.objects.filter(schoolkid=schoolkid, points__lte=3)
-    for mark in marks:
-        mark.points = 5
-        mark.save()
+    Mark.objects.filter(schoolkid=schoolkid, points__lte=3).update(points=5)
 
 
 def create_commendation(schoolkid):
