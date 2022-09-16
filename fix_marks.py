@@ -1,17 +1,13 @@
 def delete_chastisements(schoolkid):
-    from datacenter.models import Chastisement
     chastisement = Chastisement.objects.filter(schoolkid=schoolkid)
     chastisement.delete()
 
 
 def fix_marks(schoolkid):
-    from datacenter.models import Mark
     Mark.objects.filter(schoolkid=schoolkid, points__lte=3).update(points=5)
 
 
 def create_commendation(schoolkid):
-    import random
-    from datacenter.models import Subject, Lesson, Commendation, Teacher
     commendations = ['Молодец!', 'Отлично!', 'Хорошо!', 'Гораздо лучше, чем я ожидал!', 'Ты меня приятно удивил!',
                      'Великолепно!']
     lessons_title = ['Изобразительное искусство', 'Чтение', 'Труд', 'Математика', 'Чистописание', 'Физкультура', 'Музыка',
@@ -33,8 +29,6 @@ def create_commendation(schoolkid):
 
 
 def get_schoolkid(full_name):
-    from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
-    from datacenter.models import Schoolkid
     try:
         schoolkid = Schoolkid.objects.get(full_name__contains=full_name)
     except MultipleObjectsReturned:
