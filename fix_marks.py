@@ -1,3 +1,9 @@
+import random
+
+from datacenter.models import Subject, Lesson, Commendation, Teacher, Chastisement, Mark, Schoolkid
+from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
+
+
 def delete_chastisements(schoolkid):
     chastisement = Chastisement.objects.filter(schoolkid=schoolkid)
     chastisement.delete()

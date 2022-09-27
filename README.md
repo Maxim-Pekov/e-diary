@@ -21,10 +21,6 @@ python3 manage.py shell
 4. В shell импортируете скрипт, модели из БД и библиотеку random командами:
 
 ```python
-import random
-
-from datacenter.models import Subject, Lesson, Commendation, Teacher, Chastisement, Mark, Schoolkid
-from django.core.exceptions import MultipleObjectsReturned, ObjectDoesNotExist
 from fix_marks import fix_marks, delete_chastisements, create_commendation, get_schoolkid
 ```
 
